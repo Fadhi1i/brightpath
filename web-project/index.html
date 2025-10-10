@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrightPath | Login</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/login.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <!-- Left side illustration -->
+      <div class="login-illustration">
+        <img src="assets/images/image2.jpg" alt="Learning Illustration" />
+        <h2>Empowering Learning Together</h2>
+        <p>
+          BrightPath helps parents, teachers, and students stay connected for
+          better learning outcomes.
+        </p>
+      </div>
+
+      <!-- Right side login form -->
+      <div class="login-form">
+        <div class="form-header">
+          <img
+            src="assets/images/image1.jpg"
+            alt="BrightPath Logo"
+            class="logo"
+          />
+          <h1>Welcome Back 👋</h1>
+          <p>Login to continue your journey in learning.</p>
+        </div>
+
+        <form id="loginForm">
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <div class="password-wrapper">
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                required
+              />
+              <span class="toggle-password">👁️</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary">Login</button>
+
+          <div class="form-links">
+            <a href="#">Forgot Password?</a>
+            <p>Don’t have an account? <a href="signup.html">Sign up</a></p>
+          </div>
+
+          <p id="error-message" class="error-message"></p>
+        </form>
+
+        <footer>
+          <small
+            >© 2025 BrightPath — Aligned with SDG 4: Quality Education</small
+          >
+        </footer>
+      </div>
+    </div>
+
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/login.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrightPath | Parent Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/dashboard.css" />
+  </head>
+
+  <body id="top">
+    <div class="dashboard">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <img
+            src="assets/images/logo.jpg"
+            alt="BrightPath Logo"
+            class="logo"
+          />
+          <h2>BrightPath</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+          <ul>
+            <li class="active"><a href="#top">🏠 Dashboard</a></li>
+            <li><a href="#performance">📊 Performance</a></li>
+            <li><a href="#teacherCommentsSection">🗣️ Teacher Comments</a></li>
+            <li><a href="#announcements">📢 Announcements</a></li>
+          </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="#" id="logoutBtn">🚪 Logout</a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="content">
+        <header class="content-header">
+          <span class="menu-toggle" id="menu-toggle">&#9776;</span>
+          <h1>Welcome, <span id="parentName">Parent</span> 👋</h1>
+          <p>Here’s how your child is performing this term.</p>
+        </header>
+
+        <!-- Performance Section -->
+        <section class="card" id="performance">
+          <h2>📈 Academic Performance</h2>
+          <table class="performance-table">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Marks</th>
+                <th>Grade</th>
+              </tr>
+            </thead>
+            <tbody id="performanceData">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Comments Section -->
+        <section class="card" id="teacherCommentsSection">
+          <h2>💬 Teacher Remarks</h2>
+          <div id="teacherComments">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+
+        <!-- Announcements Section -->
+        <section class="card" id="announcements">
+          <h2>📢 Announcements</h2>
+          <ul id="announcementsList">
+            <!-- Populated by JS -->
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/dashboard.js" defer></script>
+    <script src="assets/js/parent.js" defer></script>
+  </body>
+</html>

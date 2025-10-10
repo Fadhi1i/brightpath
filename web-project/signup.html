@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrightPath | Sign Up</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/login.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <!-- Left side illustration -->
+      <div class="login-illustration">
+        <img
+          src="assets/images/signup-illustration.svg"
+          alt="Signup Illustration"
+        />
+        <h2>Join the BrightPath Community</h2>
+        <p>Empower education through collaboration — register today.</p>
+      </div>
+
+      <!-- Right side sign-up form -->
+      <div class="login-form">
+        <div class="form-header">
+          <img
+            src="assets/images/logo.png"
+            alt="BrightPath Logo"
+            class="logo"
+          />
+          <h1>Create Account ✨</h1>
+          <p>Fill in your details to get started.</p>
+        </div>
+
+        <form id="signupForm">
+          <div class="input-group">
+            <label for="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="role">Role</label>
+            <select id="role" required>
+              <option value="">Select your role</option>
+              <option value="parent">Parent</option>
+              <option value="teacher">Teacher</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <div class="password-wrapper">
+              <input
+                type="password"
+                id="password"
+                placeholder="Create a password"
+                required
+              />
+              <span class="toggle-password">👁️</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary">Sign Up</button>
+
+          <div class="form-links">
+            <p>Already have an account? <a href="index.html">Login here</a></p>
+          </div>
+
+          <p id="error-message" class="error-message"></p>
+        </form>
+
+        <footer>
+          <small>© 2025 BrightPath — Empowering Quality Education</small>
+        </footer>
+      </div>
+    </div>
+
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/login.js" defer></script>
+  </body>
+</html>

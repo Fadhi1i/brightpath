@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrightPath | Teacher Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/dashboard.css" />
+  </head>
+
+  <body id="top">
+    <div class="dashboard">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <img
+            src="assets/images/logo.jpg"
+            alt="BrightPath Logo"
+            class="logo"
+          />
+          <h2>BrightPath</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+          <ul>
+            <li class="active"><a href="#top">🏠 Dashboard</a></li>
+            <li><a href="#enterMarks">🧾 Enter Marks</a></li>
+            <li><a href="#uploadCSV">📤 Upload CSV</a></li>
+            <li><a href="#classSummary">📈 Class Summary</a></li>
+            <li><a href="#announcements">💬 Announcements</a></li>
+          </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="#" id="logoutBtn">🚪 Logout</a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="content">
+        <header class="content-header">
+          <span class="menu-toggle" id="menu-toggle">&#9776;</span>
+          <h1>Welcome, <span id="teacherName">Teacher</span> 👋</h1>
+          <p>Manage your class records and communicate with parents easily.</p>
+        </header>
+
+        <!-- Marks Entry Form -->
+        <section class="card" id="enterMarks">
+          <h2>🧾 Enter Student Marks</h2>
+          <form id="marksForm" class="form-inline">
+            <input
+              type="text"
+              id="studentName"
+              placeholder="Student Name"
+              required
+            />
+            <input type="text" id="subject" placeholder="Subject" required />
+            <input
+              type="number"
+              id="marks"
+              placeholder="Marks"
+              required
+              min="0"
+              max="100"
+            />
+            <button type="submit" class="btn-primary">Submit</button>
+          </form>
+        </section>
+
+        <!-- CSV Upload -->
+        <section class="card" id="uploadCSV">
+          <h2>📤 Upload Marks (CSV)</h2>
+          <form id="csvUploadForm" enctype="multipart/form-data">
+            <input type="file" id="csvFile" accept=".csv" />
+            <button type="submit" class="btn-primary">Upload</button>
+          </form>
+        </section>
+
+        <!-- Class Performance Summary -->
+        <section class="card" id="classSummary">
+          <h2>📈 Class Performance Summary</h2>
+          <table class="performance-table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Average Marks</th>
+                <th>Grade</th>
+              </tr>
+            </thead>
+            <tbody id="classSummaryTable">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Announcements -->
+        <section class="card" id="announcements">
+          <h2>💬 Announcements</h2>
+          <form id="announcementForm">
+            <textarea
+              id="announcementText"
+              placeholder="Write a new announcement..."
+              rows="3"
+              required
+            ></textarea>
+            <button type="submit" class="btn-primary">Post</button>
+          </form>
+          <ul id="announcementList">
+            <!-- Populated by JS -->
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/dashboard.js" defer></script>
+    <script src="assets/js/teacher.js" defer></script>
+  </body>
+</html>
