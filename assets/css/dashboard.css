@@ -276,51 +276,95 @@ form button {
    RESPONSIVE (mobile slide-in)
    =============================== */
 @media (max-width: 900px) {
+
+    /* Sidebar: hidden by default, slides in when toggled */
     .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 230px;
         transform: translateX(-100%);
-        width: 250px;
+        transition: transform 0.3s ease-in-out;
+        z-index: 2000;
     }
 
     .sidebar.show {
         transform: translateX(0);
     }
 
+    /* Menu toggle button visible on mobile */
     .menu-toggle {
         display: inline-block;
+        font-size: 1.8rem;
+        cursor: pointer;
+        margin: 1rem;
     }
 
+    /* Content takes full width when sidebar is hidden */
     .content {
         margin-left: 0;
-        padding: 1.5rem;
+        padding: 1.2rem;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Fix tables/cards/form wrapping */
+    table,
+    .card,
+    form {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    /* Prevent horizontal scrolling */
+    html,
+    body {
+        max-width: 100%;
+        overflow-x: hidden;
     }
 }
-
-html {
-    scroll-behavior: smooth;
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    z-index: 1500;
 }
 
+.sidebar.show+.sidebar-overlay {
+    display: block;
+}
 /* ===============================
-   ACTIVE LINK GLOW EFFECT
+   ACTIVE LINK GLOW EFFECT (Enhanced)
    =============================== */
 .sidebar-nav ul li.active a {
-    background-color: rgba(255, 255, 255, 0.25);
-    border-radius: 8px;
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0.25),
+            rgba(255, 255, 255, 0.15));
+    border-radius: 10px;
     padding-left: 1.8rem;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-    transition: all 0.3s ease;
+    color: #fff;
+    box-shadow:
+        0 0 8px rgba(255, 255, 255, 0.6),
+        0 0 16px rgba(255, 255, 255, 0.4);
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+    transform: scale(1.02);
+    transition: all 0.35s ease-in-out;
 }
 
-/* Subtle hover improvement to match glow feel */
+/* Subtle hover effect to complement glow */
 .sidebar-nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
-}
-#resultsControlPanel {
-    scroll-margin-top: 100px;
-}
-/* Extra scroll space for correct highlight detection */
-#releaseResults,
-#classSummary {
-    scroll-margin-bottom: 200px;
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0.18),
+            rgba(255, 255, 255, 0.1));
+    box-shadow:
+        0 0 6px rgba(255, 255, 255, 0.3),
+        0 0 12px rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    transform: scale(1.01);
+    transition: all 0.3s ease-in-out;
 }
