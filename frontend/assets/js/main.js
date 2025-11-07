@@ -103,3 +103,87 @@ alertStyle.textContent = `
   }
 `;
 document.head.appendChild(alertStyle);
+// ===============================
+// SIGNUP LOGIC
+// ===============================
+const signupForm = document.getElementById("signupForm");
+const roleSelect = document.getElementById("role");
+const parentDetails = document.getElementById("parentDetails");
+
+if (signupForm && roleSelect) {
+  // 1️⃣ Show/Hide Parent Details based on selected role
+  roleSelect.addEventListener("change", () => {
+    if (roleSelect.value === "parent") {
+      parentDetails.style.display = "block";
+    } else {
+      parentDetails.style.display = "none";
+    }
+  });
+
+  // 2️⃣ Handle signup submission
+  signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const role = roleSelect.value;
+    const password = document.getElementById("password").value.trim();
+
+    if (!name || !email || !password || !role) {
+      showMessage("Please fill in all required fields.", "error");
+      return;
+    }
+
+    let payload = { name, email, password };
+    let endpoint = "";
+
+    // 3️⃣ Route based on role
+    if (role === "teacher") {
+      endpoint = "/add-teacher";
+    } else if (role === "admin") {
+      endpoint = "/add-admin";
+    } else if (role === "parent") {
+      const phone = document.getElementById("parentPhone").value.trim();
+      const admission_no = document.getElementById("admissionNo").value.trim();
+
+      if (!phone || !admission_no) {
+        showMessage("Please fill in phone and admission number.", "error");
+        return;
+      }
+
+      payload = {
+        name,
+        email,
+        phone,
+        password,
+        admission_no,
+      };
+      endpoint = "/parent/signup";
+    } else {
+      showMessage("Invalid role selected.", "error");
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://127.0.0.1:8000${endpoint}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.detail || "Signup failed.");
+      }
+
+      showMessage("Signup successful! Redirecting to login...", "success");
+
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 1500);
+    } catch (error) {
+      showMessage(error.message, "error");
+    }
+  });
+}

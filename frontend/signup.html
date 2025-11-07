@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/login.css" />
   </head>
+
   <body>
     <div class="login-container">
       <!-- Left side illustration -->
@@ -63,7 +64,6 @@
               <option value="">Select your role</option>
               <option value="parent">Parent</option>
               <option value="teacher">Teacher</option>
-              <option value="admin">Admin</option>
             </select>
           </div>
 
@@ -77,6 +77,78 @@
                 required
               />
               <span class="toggle-password">👁️</span>
+            </div>
+          </div>
+
+          <!-- ============================= -->
+          <!-- Parent Details (Hidden by default) -->
+          <!-- ============================= -->
+          <div id="parentDetails" class="parent-section" style="display: none">
+            <h3>👨‍👩‍👧 Parent Details</h3>
+            <div class="input-group">
+              <label for="parentPhone">Phone Number</label>
+              <input
+                type="tel"
+                id="parentPhone"
+                placeholder="Enter your phone number"
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="admissionNo">Child’s Admission Number</label>
+              <input
+                type="text"
+                id="admissionNo"
+                placeholder="Enter your child’s admission number"
+              />
+            </div>
+          </div>
+          <!-- ============================= -->
+          <!-- ============================= -->
+          <!-- Teacher Details (Hidden by default) -->
+          <!-- ============================= -->
+          <div
+            id="teacherDetails"
+            class="teacher-section"
+            style="display: none"
+          >
+            <h3>👨‍🏫 Teacher Details</h3>
+
+            <div class="input-group">
+              <label for="department">Department</label>
+              <input
+                type="text"
+                id="department"
+                placeholder="Enter your department (e.g., Mathematics)"
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="subjects">Subjects You Teach</label>
+              <select id="subjects" multiple>
+                <option value="Mathematics">Mathematics</option>
+                <option value="English">English</option>
+                <option value="Science">Science</option>
+                <option value="Social Studies">Social Studies</option>
+                <option value="Kiswahili">Kiswahili</option>
+              </select>
+              <small>Hold Ctrl / Cmd to select multiple subjects.</small>
+            </div>
+
+            <div class="input-group">
+              <label for="grades">Grades You Teach</label>
+              <select id="grades" multiple>
+                <option value="Grade 1">Grade 1</option>
+                <option value="Grade 2">Grade 2</option>
+                <option value="Grade 3">Grade 3</option>
+                <option value="Grade 4">Grade 4</option>
+                <option value="Grade 5">Grade 5</option>
+                <option value="Grade 6">Grade 6</option>
+                <option value="Grade 7">Grade 7</option>
+                <option value="Grade 8">Grade 8</option>
+                <option value="Grade 9">Grade 9</option>
+              </select>
+              <small>Hold Ctrl / Cmd to select multiple grades.</small>
             </div>
           </div>
 

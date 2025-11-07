@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrightPath | Admin Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/dashboard.css" />
+  </head>
+
+  <body id="top">
+    <div class="dashboard">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <img
+            src="assets/images/logo.jpg"
+            alt="BrightPath Logo"
+            class="logo"
+          />
+          <h2>BrightPath</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+          <ul>
+            <li class="active"><a href="#top">🏠 Dashboard</a></li>
+            <li><a href="#registerStudent">🧍 Register Student</a></li>
+            <li><a href="#dataOverview">📋 Records Overview</a></li>
+            <li><a href="#manageSubjects">📘 Manage Subjects</a></li>
+            <li><a href="#announcements">📢 Announcements</a></li>
+            <li><a href="#releaseResults">📤 Release Results</a></li>
+            <li><a href="#resultsControlPanel">📊 Results Control Panel</a></li>
+          </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="#" id="logoutBtn">🚪 Logout</a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="content">
+        <header class="content-header">
+          <span class="menu-toggle" id="menu-toggle">&#9776;</span>
+          <h1>Welcome, <span id="adminName">Admin</span> 👋</h1>
+          <p>
+            Manage your school data, teachers, and student records efficiently.
+          </p>
+        </header>
+
+        <!-- Register Student -->
+        <section class="card" id="registerStudent">
+          <h2>🧍 Register Student</h2>
+          <form id="studentForm" class="form-grid">
+            <input
+              type="text"
+              id="studentName"
+              placeholder="Full Name"
+              required
+            />
+            <input
+              type="text"
+              id="className"
+              placeholder="Class (e.g., Grade 6A)"
+              required
+            />
+
+            <select id="gender" required>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+
+            <input type="date" id="dob" required />
+
+            <button type="submit" class="btn-primary">Add Student</button>
+          </form>
+
+          <table class="styled-table" id="studentsTable">
+            <thead>
+              <tr>
+                <th>Reg No</th>
+                <th>Name</th>
+                <th>Grade</th>
+                <th>Gender</th>
+                <th>Date of Birth</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Loaded dynamically -->
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Records Overview -->
+        <section class="card" id="dataOverview">
+          <h2>📋 Records Overview</h2>
+
+          <!-- Tab Navigation -->
+          <div class="data-tabs">
+            <button class="tab active" data-target="studentsTab">
+              🧑‍🎓 Students
+            </button>
+            <button class="tab" data-target="teachersTab">👩‍🏫 Teachers</button>
+            <button class="tab" data-target="parentsTab">👨‍👩‍👧 Parents</button>
+          </div>
+
+          <!-- Students -->
+          <div id="studentsTab" class="tab-content active data-panel">
+            <div class="panel-header">
+              <input
+                type="text"
+                id="searchStudent"
+                placeholder="🔍 Search student..."
+              />
+              <button id="refreshStudents" class="btn-outline">Refresh</button>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="styled-table" id="studentsTable">
+                <thead>
+                  <tr>
+                    <th>Reg No</th>
+                    <th>Name</th>
+                    <th>Grade</th>
+                    <th>Gender</th>
+                    <th>Date of Birth</th>
+                    <th>actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Loaded dynamically -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="pagination">
+              <button class="prev">⬅ Prev</button>
+              <span class="page-number">Page 1</span>
+              <button class="next">Next ➡</button>
+            </div>
+          </div>
+
+          <!-- Teachers -->
+          <div id="teachersTab" class="tab-content data-panel">
+            <div class="panel-header">
+              <input
+                type="text"
+                id="searchTeacher"
+                placeholder="🔍 Search teacher..."
+              />
+              <button id="refreshTeachers" class="btn-outline">Refresh</button>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="styled-table" id="teachersTable">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Subjects</th>
+                    <!-- ✅ add this -->
+                    <th>Created</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Filled dynamically -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="pagination">
+              <button class="prev">⬅ Prev</button>
+              <span class="page-number">Page 1</span>
+              <button class="next">Next ➡</button>
+            </div>
+          </div>
+
+          <!-- Parents -->
+          <div id="parentsTab" class="tab-content data-panel">
+            <div class="panel-header">
+              <input
+                type="text"
+                id="searchParent"
+                placeholder="🔍 Search parent..."
+              />
+              <button id="refreshParents" class="btn-outline">Refresh</button>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="styled-table" id="parentsTable">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Children</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Loaded dynamically -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="pagination">
+              <button class="prev">⬅ Prev</button>
+              <span class="page-number">Page 1</span>
+              <button class="next">Next ➡</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Manage Subjects -->
+        <section class="card" id="manageSubjects">
+          <h2>📘 Manage Subjects</h2>
+          <form id="subjectForm" class="form-inline">
+            <input
+              type="text"
+              id="subjectName"
+              placeholder="New Subject"
+              required
+            />
+            <button type="submit" class="btn-primary">Add</button>
+          </form>
+          <ul id="subjectList">
+            <!-- Populated by JS -->
+          </ul>
+        </section>
+
+        <!-- Announcements -->
+
+        <!-- ========================= -->
+        <!-- Announcements Section -->
+        <!-- ========================= -->
+        <section class="card" id="announcements">
+          <h2>📢 Announcements</h2>
+
+          <!-- Form for posting new announcements -->
+          <form id="announcementForm">
+            <textarea
+              id="announcementInput"
+              placeholder="Write a new announcement..."
+              rows="3"
+              required
+            ></textarea>
+            <button type="submit" id="postAnnouncementBtn" class="btn-primary">
+              Post
+            </button>
+          </form>
+
+          <!-- Announcements list dynamically populated by JS -->
+          <div id="announcementsList" class="announcement-list">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </section>
+
+        <!-- Release Results -->
+        <section class="card" id="releaseResults">
+          <h2>📤 Release Results</h2>
+          <button id="releaseResultsBtn" class="btn-primary">
+            Release Now
+          </button>
+          <p id="releaseStatus"></p>
+        </section>
+
+        <!-- Results Control Panel -->
+        <section class="card always-visible" id="resultsControlPanel">
+          <h2>📊 Results Control Panel</h2>
+          <div class="table-wrapper">
+            <table class="results-table" id="resultsSummaryTable">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Total Subjects</th>
+                  <th>Uploaded</th>
+                  <th>Pending</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="resultTableBody">
+                <!-- Filled dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Live Results Feed -->
+        <section class="card" id="liveResults">
+          <h2>📊 Live Results Feed</h2>
+          <p>See results as teachers submit them in real time.</p>
+
+          <div class="table-wrapper">
+            <table class="styled-table" id="liveResultsTable">
+              <thead>
+                <tr>
+                  <th>Reg No</th>
+                  <th>Student</th>
+                  <th>Grade</th>
+                  <th>Subject</th>
+                  <th>Teacher</th>
+                  <th>Marks</th>
+                  <th>Term</th>
+                  <th>Exam Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+
+          <button id="refreshResultsBtn" class="btn-outline">🔄 Refresh</button>
+        </section>
+      </main>
+    </div>
+    <!-- Class Results Modal -->
+    <div id="classResultsModal" class="modal hidden">
+      <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <h3 id="modalTitle">Class Results</h3>
+        <table class="styled-table" id="classResultsTable">
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Teacher</th>
+              <th>Uploaded</th>
+              <th>Pending</th>
+              <th>Average Marks</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Edit Student Modal -->
+    <div id="editStudentModal" class="modal">
+      <div class="modal-content">
+        <h3>Edit Student</h3>
+        <form id="editStudentForm">
+          <input type="hidden" id="editStudentId" />
+
+          <label>Full Name</label>
+          <input type="text" id="editStudentName" required />
+
+          <label>Grade / Class</label>
+          <input type="text" id="editStudentGrade" required />
+
+          <label>Gender</label>
+          <select id="editStudentGender" required>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+
+          <label>Date of Birth</label>
+          <input type="date" id="editStudentDob" required />
+
+          <div class="modal-actions">
+            <button type="submit" class="btn-save">Save Changes</button>
+            <button type="button" id="closeEditModal" class="btn-cancel">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/dashboard.js" defer></script>
+    <script src="assets/js/admin.js" defer></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const tabs = document.querySelectorAll(".data-tabs .tab");
+        const panels = document.querySelectorAll(".tab-content");
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            tabs.forEach((t) => t.classList.remove("active"));
+            panels.forEach((p) => p.classList.remove("active"));
+
+            tab.classList.add("active");
+            const targetId = tab.getAttribute("data-target");
+            const targetPanel = document.getElementById(targetId);
+
+            if (targetPanel) {
+              targetPanel.classList.add("active");
+              targetPanel.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

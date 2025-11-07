@@ -13,35 +13,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Display user name
-  const nameSpan =
-    document.getElementById(`${userRole}Name`) ||
-    document.getElementById("userName");
-  if (nameSpan && userEmail.includes("@")) {
-    const name = userEmail.split("@")[0];
-    nameSpan.textContent = name.charAt(0).toUpperCase() + name.slice(1);
+ // Display user name (real name from localStorage)
+const nameSpan =
+  document.getElementById(`${userRole}Name`) ||
+  document.getElementById("userName");
+
+const storedName = localStorage.getItem("userName");
+
+if (nameSpan) {
+  if (storedName) {
+    nameSpan.textContent = storedName;
+  } else if (userEmail && userEmail.includes("@")) {
+    // fallback in case name isn't stored
+    const fallbackName = userEmail.split("@")[0].replace(/[._]/g, " ");
+    nameSpan.textContent =
+      fallbackName.charAt(0).toUpperCase() + fallbackName.slice(1);
   }
+}
+
 
   // ===============================
-  // MOBILE SIDEBAR TOGGLE
+  // CONTENT SCROLLING HELPERS
   // ===============================
-  const toggle = document.getElementById("menu-toggle");
-  const sidebar = document.getElementById("sidebar");
   const content = document.querySelector(".content");
-
-  if (toggle && sidebar) {
-    toggle.addEventListener("click", () => sidebar.classList.toggle("show"));
-  }
-
-  document.addEventListener("click", (event) => {
-    if (
-      sidebar &&
-      sidebar.classList.contains("show") &&
-      !sidebar.contains(event.target) &&
-      !toggle.contains(event.target)
-    ) {
-      sidebar.classList.remove("show");
-    }
-  });
 
   // ===============================
   // SMOOTH SCROLL INSIDE CONTENT (fixed top alignment)
@@ -61,8 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
           top: targetPosition,
           behavior: "smooth",
         });
-
-        sidebar.classList.remove("show");
       });
     });
   }

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrightPath | Parent Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/dashboard.css" />
+  </head>
+
+  <body id="top">
+    <div class="dashboard">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <img
+            src="assets/images/logo.jpg"
+            alt="BrightPath Logo"
+            class="logo"
+          />
+          <h2>BrightPath</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+          <ul>
+            <li class="active"><a href="#top">🏠 Dashboard</a></li>
+            <li><a href="#performance">📊 Performance</a></li>
+            <li><a href="#teacherCommentsSection">🗣️ Teacher Comments</a></li>
+            <li><a href="#announcements">📢 Announcements</a></li>
+          </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="#" id="logoutBtn">🚪 Logout</a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="content">
+        <header class="content-header">
+          <span class="menu-toggle" id="menu-toggle">&#9776;</span>
+          <h1>Welcome, <span id="parentName">Parent</span> 👋</h1>
+          <p>Here’s how your child is performing this term.</p>
+        </header>
+
+        <!-- 🧒 Student Info Section -->
+        <section class="card" id="studentInfo">
+          <h2>👨‍🎓 Student Information</h2>
+          <div class="student-details">
+            <p>
+              <strong>Name:</strong> <span id="studentName">Loading...</span>
+            </p>
+            <p>
+              <strong>Reg No:</strong> <span id="studentReg">Loading...</span>
+            </p>
+            <p>
+              <strong>Grade:</strong> <span id="studentGrade">Loading...</span>
+            </p>
+          </div>
+        </section>
+
+        <!-- Performance Section -->
+        <section class="card" id="performance">
+          <h2>📈 Academic Performance</h2>
+          <table class="performance-table">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Marks</th>
+                <th>Grade</th>
+              </tr>
+            </thead>
+            <tbody id="performanceData">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </section>
+        <textarea
+          id="inputText"
+          placeholder="Paste your notes here..."
+        ></textarea>
+        <br />
+        <button id="summarizeBtn">Summarize</button>
+        <p id="result"></p>
+
+        <script>
+          document
+            .getElementById("summarizeBtn")
+            .addEventListener("click", async () => {
+              const text = document.getElementById("inputText").value;
+              const res = await fetch("/summarize", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text }),
+              });
+              const data = await res.json();
+              document.getElementById("result").innerText = data.summary;
+            });
+        </script>
+        <div id="aiExplainer" class="ai-box">
+          <h3>AI Tutor</h3>
+          <textarea
+            id="conceptInput"
+            placeholder="Type a concept to explain (e.g., photosynthesis)..."
+          ></textarea
+          ><br />
+          <button id="explainBtn">Explain</button>
+          <p id="explanationResult"></p>
+        </div>
+
+        <script>
+          document
+            .getElementById("explainBtn")
+            .addEventListener("click", async () => {
+              const concept = document
+                .getElementById("conceptInput")
+                .value.trim();
+              if (!concept) {
+                document.getElementById("explanationResult").innerText =
+                  "Please type a concept first.";
+                return;
+              }
+
+              document.getElementById("explanationResult").innerText =
+                "Thinking... ⏳";
+
+              const res = await fetch("http://127.0.0.1:8000/explain", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ concept }),
+              });
+
+              const data = await res.json();
+              document.getElementById("explanationResult").innerText =
+                data.explanation;
+            });
+        </script>
+        <div id="aiQuestionGenerator" class="ai-box">
+          <h3>AI Question Generator</h3>
+          <textarea
+            id="questionInput"
+            placeholder="Paste a passage or topic here..."
+          ></textarea
+          ><br />
+          <button id="generateBtn">Generate Questions</button>
+          <pre id="questionResult"></pre>
+        </div>
+
+        <script>
+          document
+            .getElementById("generateBtn")
+            .addEventListener("click", async () => {
+              const text = document
+                .getElementById("questionInput")
+                .value.trim();
+              if (!text) {
+                document.getElementById("questionResult").innerText =
+                  "Please enter text first.";
+                return;
+              }
+
+              document.getElementById("questionResult").innerText =
+                "Generating questions... ⏳";
+
+              const res = await fetch(
+                "http://127.0.0.1:8000/generate-questions",
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ text }),
+                }
+              );
+
+              const data = await res.json();
+              document.getElementById("questionResult").innerText =
+                data.questions;
+            });
+        </script>
+
+        <!-- Comments Section -->
+        <section class="card" id="teacherCommentsSection">
+          <h2>💬 Teacher Remarks</h2>
+          <div id="teacherComments">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+
+        <!-- Announcements Section -->
+        <!-- ========================= -->
+        <!-- Announcements for Parents -->
+        <!-- ========================= -->
+        <section class="card" id="announcements">
+          <h2>📢 Announcements</h2>
+
+          <div id="announcementsList" class="announcement-list">
+            <!-- Populated dynamically -->
+            <p class="empty">Loading announcements...</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/dashboard.js" defer></script>
+    <script src="assets/js/parent.js" defer></script>
+  </body>
+</html>
