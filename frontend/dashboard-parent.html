@@ -17,6 +17,9 @@
   </head>
 
   <body id="top">
+    <!-- ✅ Mobile menu toggle -->
+    <button class="menu-toggle" id="menuToggleBtn">☰</button>
+
     <div class="dashboard">
       <!-- Sidebar -->
       <aside class="sidebar" id="sidebar">
@@ -44,9 +47,8 @@
       </aside>
 
       <!-- Main Content -->
-      <main class="content">
+      <main class="content" id="content">
         <header class="content-header">
-          <span class="menu-toggle" id="menu-toggle">&#9776;</span>
           <h1>Welcome, <span id="parentName">Parent</span> 👋</h1>
           <p>Here’s how your child is performing this term.</p>
         </header>
@@ -55,15 +57,9 @@
         <section class="card" id="studentInfo">
           <h2>👨‍🎓 Student Information</h2>
           <div class="student-details">
-            <p>
-              <strong>Name:</strong> <span id="studentName">Loading...</span>
-            </p>
-            <p>
-              <strong>Reg No:</strong> <span id="studentReg">Loading...</span>
-            </p>
-            <p>
-              <strong>Grade:</strong> <span id="studentGrade">Loading...</span>
-            </p>
+            <p><strong>Name:</strong> <span id="studentName">Loading...</span></p>
+            <p><strong>Reg No:</strong> <span id="studentReg">Loading...</span></p>
+            <p><strong>Grade:</strong> <span id="studentGrade">Loading...</span></p>
           </div>
         </section>
 
@@ -78,139 +74,143 @@
                 <th>Grade</th>
               </tr>
             </thead>
-            <tbody id="performanceData">
-              <!-- Populated by JS -->
-            </tbody>
+            <tbody id="performanceData"></tbody>
           </table>
         </section>
-        <textarea
-          id="inputText"
-          placeholder="Paste your notes here..."
-        ></textarea>
-        <br />
-        <button id="summarizeBtn">Summarize</button>
-        <p id="result"></p>
 
-        <script>
-          document
-            .getElementById("summarizeBtn")
-            .addEventListener("click", async () => {
-              const text = document.getElementById("inputText").value;
-              const res = await fetch("/summarize", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ text }),
-              });
-              const data = await res.json();
-              document.getElementById("result").innerText = data.summary;
-            });
-        </script>
+        <!-- 🧠 AI Tools -->
+        <div class="ai-box">
+          <h3>Notes Summarizer</h3>
+          <textarea id="inputText" placeholder="Paste your notes here..."></textarea>
+          <button id="summarizeBtn">Summarize</button>
+          <p id="result"></p>
+        </div>
+
         <div id="aiExplainer" class="ai-box">
           <h3>AI Tutor</h3>
           <textarea
             id="conceptInput"
             placeholder="Type a concept to explain (e.g., photosynthesis)..."
-          ></textarea
-          ><br />
+          ></textarea>
           <button id="explainBtn">Explain</button>
           <p id="explanationResult"></p>
         </div>
 
-        <script>
-          document
-            .getElementById("explainBtn")
-            .addEventListener("click", async () => {
-              const concept = document
-                .getElementById("conceptInput")
-                .value.trim();
-              if (!concept) {
-                document.getElementById("explanationResult").innerText =
-                  "Please type a concept first.";
-                return;
-              }
-
-              document.getElementById("explanationResult").innerText =
-                "Thinking... ⏳";
-
-              const res = await fetch("https://brightpath-3.onrender.com/explain", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ concept }),
-              });
-
-              const data = await res.json();
-              document.getElementById("explanationResult").innerText =
-                data.explanation;
-            });
-        </script>
         <div id="aiQuestionGenerator" class="ai-box">
           <h3>AI Question Generator</h3>
           <textarea
             id="questionInput"
             placeholder="Paste a passage or topic here..."
-          ></textarea
-          ><br />
+          ></textarea>
           <button id="generateBtn">Generate Questions</button>
           <pre id="questionResult"></pre>
         </div>
 
-        <script>
-          document
-            .getElementById("generateBtn")
-            .addEventListener("click", async () => {
-              const text = document
-                .getElementById("questionInput")
-                .value.trim();
-              if (!text) {
-                document.getElementById("questionResult").innerText =
-                  "Please enter text first.";
-                return;
-              }
-
-              document.getElementById("questionResult").innerText =
-                "Generating questions... ⏳";
-
-              const res = await fetch(
-                "https://brightpath-3.onrender.com/generate-questions",
-                {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ text }),
-                }
-              );
-
-              const data = await res.json();
-              document.getElementById("questionResult").innerText =
-                data.questions;
-            });
-        </script>
-
         <!-- Comments Section -->
         <section class="card" id="teacherCommentsSection">
           <h2>💬 Teacher Remarks</h2>
-          <div id="teacherComments">
-            <!-- Populated by JS -->
-          </div>
+          <div id="teacherComments"></div>
         </section>
 
         <!-- Announcements Section -->
-        <!-- ========================= -->
-        <!-- Announcements for Parents -->
-        <!-- ========================= -->
         <section class="card" id="announcements">
           <h2>📢 Announcements</h2>
-
           <div id="announcementsList" class="announcement-list">
-            <!-- Populated dynamically -->
             <p class="empty">Loading announcements...</p>
           </div>
         </section>
       </main>
     </div>
 
-    <!-- Scripts -->
+    <!-- ✅ Scripts -->
     <script src="assets/js/main.js" defer></script>
     <script src="assets/js/dashboard.js" defer></script>
     <script src="assets/js/parent.js" defer></script>
+
+    <script>
+      // Sidebar toggle for mobile
+      const toggleBtn = document.getElementById("menuToggleBtn");
+      const sidebar = document.getElementById("sidebar");
+      const content = document.getElementById("content");
+
+      toggleBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("active");
+        content.classList.toggle("shift");
+      });
+
+      // Close sidebar when tapping outside
+      document.addEventListener("click", (e) => {
+        if (
+          window.innerWidth <= 768 &&
+          !sidebar.contains(e.target) &&
+          !toggleBtn.contains(e.target)
+        ) {
+          sidebar.classList.remove("active");
+          content.classList.remove("shift");
+        }
+      });
+
+      // AI: Summarizer
+      document
+        .getElementById("summarizeBtn")
+        .addEventListener("click", async () => {
+          const text = document.getElementById("inputText").value;
+          const res = await fetch("https://brightpath-3.onrender.com/summarize", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text }),
+          });
+          const data = await res.json();
+          document.getElementById("result").innerText = data.summary;
+        });
+
+      // AI: Explain Concept
+      document
+        .getElementById("explainBtn")
+        .addEventListener("click", async () => {
+          const concept = document.getElementById("conceptInput").value.trim();
+          const result = document.getElementById("explanationResult");
+
+          if (!concept) {
+            result.innerText = "Please type a concept first.";
+            return;
+          }
+
+          result.innerText = "Thinking... ⏳";
+          const res = await fetch("https://brightpath-3.onrender.com/explain", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ concept }),
+          });
+          const data = await res.json();
+          result.innerText = data.explanation;
+        });
+
+      // AI: Question Generator
+      document
+        .getElementById("generateBtn")
+        .addEventListener("click", async () => {
+          const text = document.getElementById("questionInput").value.trim();
+          const result = document.getElementById("questionResult");
+
+          if (!text) {
+            result.innerText = "Please enter text first.";
+            return;
+          }
+
+          result.innerText = "Generating questions... ⏳";
+          const res = await fetch(
+            "https://brightpath-3.onrender.com/generate-questions",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ text }),
+            }
+          );
+
+          const data = await res.json();
+          result.innerText = data.questions;
+        });
+    </script>
   </body>
 </html>
