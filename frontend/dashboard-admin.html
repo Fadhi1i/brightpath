@@ -18,6 +18,8 @@
 
   <body id="top">
     <div class="dashboard">
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
       <!-- Sidebar -->
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
@@ -406,5 +408,14 @@
         });
       });
     </script>
+    <script>
+function toggleMenu() {
+  const sidebar = document.querySelector('.sidebar');
+  const content = document.querySelector('.content');
+  sidebar.classList.toggle('active');
+  content.classList.toggle('shift');
+}
+</script>
+
   </body>
 </html>
