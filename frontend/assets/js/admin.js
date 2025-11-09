@@ -2,7 +2,7 @@
    ADMIN DASHBOARD LOGIC - BRIGHTPATH (Final Unified Version)
    =============================== */
 
-const API_URL = "https://brightpath-2.onrender.com/"; // Local FastAPI backend
+const API_URL = "https://brightpath-3.onrender.com"; // Local FastAPI backend
 
 document.addEventListener("DOMContentLoaded", () => {
   const userRole = localStorage.getItem("userRole");
@@ -597,7 +597,7 @@ postButton.addEventListener("click", async () => {
     postButton.disabled = true;
     postButton.textContent = "Posting...";
 
-    const res = await fetch("https://brightpath-2.onrender.com/add-announcement", {
+    const res = await fetch("https://brightpath-3.onrender.com/add-announcement", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message, posted_by: adminName }),
