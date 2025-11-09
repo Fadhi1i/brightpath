@@ -597,7 +597,7 @@ postButton.addEventListener("click", async () => {
     postButton.disabled = true;
     postButton.textContent = "Posting...";
 
-    const res = await fetch("http://127.0.0.1:8000/add-announcement", {
+    const res = await fetch("https://brightpath-2.onrender.com/add-announcement", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message, posted_by: adminName }),
