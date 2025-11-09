@@ -2,7 +2,7 @@
 /* ===============================
    MAIN JS - BRIGHTPATH GLOBAL LOGIC
    =============================== */
-
+const BASE_URL = "https://brightpath-2.onrender.com";
 // Ensure all pages use the same scroll and layout behavior
 window.addEventListener("load", () => {
   document.body.style.visibility = "visible";
@@ -165,7 +165,7 @@ if (signupForm && roleSelect) {
     }
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000${endpoint}`, {
+      const response = await fetch(`${BASE_URL}${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
