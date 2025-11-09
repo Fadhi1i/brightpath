@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("studentGrade").textContent = studentData.grade || "—";
 
     // === Fetch performance ===
-    const perfResponse = await fetch(`https://brightpath-2.onrender.com/students/${studentData.id}/performance`);
+    const perfResponse = await fetch(`https://brightpath-3.onrender.com/students/${studentData.id}/performance`);
     const perfResult = await perfResponse.json();
 
     const performanceBody = document.getElementById("performanceData");
@@ -105,7 +105,7 @@ async function loadAnnouncements() {
   if (!list) return;
 
   try {
-    const res = await fetch("https://brightpath-2.onrender.com/get-announcements");
+    const res = await fetch("https://brightpath-3.onrender.com/get-announcements");
     const data = await res.json();
 
     list.innerHTML = "";
