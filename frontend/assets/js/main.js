@@ -2,7 +2,7 @@
 /* ===============================
    MAIN JS - BRIGHTPATH GLOBAL LOGIC
    =============================== */
-const BASE_URL = "https://brightpath-2.onrender.com";
+const BASE_URL = "https://brightpath-3.onrender.com";
 // Ensure all pages use the same scroll and layout behavior
 window.addEventListener("load", () => {
   document.body.style.visibility = "visible";
