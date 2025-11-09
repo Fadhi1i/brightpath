@@ -17,10 +17,10 @@
   </head>
 
   <body id="top">
-     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <div class="dashboard">
-     
+    <!-- Mobile menu toggle -->
+    <button class="menu-toggle" id="menuToggleBtn">☰</button>
 
+    <div class="dashboard">
       <!-- Sidebar -->
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
@@ -50,9 +50,8 @@
       </aside>
 
       <!-- Main Content -->
-      <main class="content">
+      <main class="content" id="content">
         <header class="content-header">
-          <span class="menu-toggle" id="menu-toggle">&#9776;</span>
           <h1>Welcome, <span id="adminName">Admin</span> 👋</h1>
           <p>
             Manage your school data, teachers, and student records efficiently.
@@ -97,9 +96,7 @@
                 <th>Date of Birth</th>
               </tr>
             </thead>
-            <tbody>
-              <!-- Loaded dynamically -->
-            </tbody>
+            <tbody></tbody>
           </table>
         </section>
 
@@ -107,23 +104,16 @@
         <section class="card" id="dataOverview">
           <h2>📋 Records Overview</h2>
 
-          <!-- Tab Navigation -->
           <div class="data-tabs">
-            <button class="tab active" data-target="studentsTab">
-              🧑‍🎓 Students
-            </button>
+            <button class="tab active" data-target="studentsTab">🧑‍🎓 Students</button>
             <button class="tab" data-target="teachersTab">👩‍🏫 Teachers</button>
             <button class="tab" data-target="parentsTab">👨‍👩‍👧 Parents</button>
           </div>
 
-          <!-- Students -->
+          <!-- Students Tab -->
           <div id="studentsTab" class="tab-content active data-panel">
             <div class="panel-header">
-              <input
-                type="text"
-                id="searchStudent"
-                placeholder="🔍 Search student..."
-              />
+              <input type="text" id="searchStudent" placeholder="🔍 Search student..." />
               <button id="refreshStudents" class="btn-outline">Refresh</button>
             </div>
 
@@ -136,30 +126,18 @@
                     <th>Grade</th>
                     <th>Gender</th>
                     <th>Date of Birth</th>
-                    <th>actions</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <!-- Loaded dynamically -->
-                </tbody>
+                <tbody></tbody>
               </table>
-            </div>
-
-            <div class="pagination">
-              <button class="prev">⬅ Prev</button>
-              <span class="page-number">Page 1</span>
-              <button class="next">Next ➡</button>
             </div>
           </div>
 
-          <!-- Teachers -->
+          <!-- Teachers Tab -->
           <div id="teachersTab" class="tab-content data-panel">
             <div class="panel-header">
-              <input
-                type="text"
-                id="searchTeacher"
-                placeholder="🔍 Search teacher..."
-              />
+              <input type="text" id="searchTeacher" placeholder="🔍 Search teacher..." />
               <button id="refreshTeachers" class="btn-outline">Refresh</button>
             </div>
 
@@ -170,32 +148,19 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Subjects</th>
-                    <!-- ✅ add this -->
                     <th>Created</th>
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <!-- Filled dynamically -->
-                </tbody>
+                <tbody></tbody>
               </table>
-            </div>
-
-            <div class="pagination">
-              <button class="prev">⬅ Prev</button>
-              <span class="page-number">Page 1</span>
-              <button class="next">Next ➡</button>
             </div>
           </div>
 
-          <!-- Parents -->
+          <!-- Parents Tab -->
           <div id="parentsTab" class="tab-content data-panel">
             <div class="panel-header">
-              <input
-                type="text"
-                id="searchParent"
-                placeholder="🔍 Search parent..."
-              />
+              <input type="text" id="searchParent" placeholder="🔍 Search parent..." />
               <button id="refreshParents" class="btn-outline">Refresh</button>
             </div>
 
@@ -209,16 +174,8 @@
                     <th>Children</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <!-- Loaded dynamically -->
-                </tbody>
+                <tbody></tbody>
               </table>
-            </div>
-
-            <div class="pagination">
-              <button class="prev">⬅ Prev</button>
-              <span class="page-number">Page 1</span>
-              <button class="next">Next ➡</button>
             </div>
           </div>
         </section>
@@ -227,28 +184,15 @@
         <section class="card" id="manageSubjects">
           <h2>📘 Manage Subjects</h2>
           <form id="subjectForm" class="form-inline">
-            <input
-              type="text"
-              id="subjectName"
-              placeholder="New Subject"
-              required
-            />
+            <input type="text" id="subjectName" placeholder="New Subject" required />
             <button type="submit" class="btn-primary">Add</button>
           </form>
-          <ul id="subjectList">
-            <!-- Populated by JS -->
-          </ul>
+          <ul id="subjectList"></ul>
         </section>
 
         <!-- Announcements -->
-
-        <!-- ========================= -->
-        <!-- Announcements Section -->
-        <!-- ========================= -->
         <section class="card" id="announcements">
           <h2>📢 Announcements</h2>
-
-          <!-- Form for posting new announcements -->
           <form id="announcementForm">
             <textarea
               id="announcementInput"
@@ -260,19 +204,13 @@
               Post
             </button>
           </form>
-
-          <!-- Announcements list dynamically populated by JS -->
-          <div id="announcementsList" class="announcement-list">
-            <!-- Populated dynamically by JS -->
-          </div>
+          <div id="announcementsList" class="announcement-list"></div>
         </section>
 
         <!-- Release Results -->
         <section class="card" id="releaseResults">
           <h2>📤 Release Results</h2>
-          <button id="releaseResultsBtn" class="btn-primary">
-            Release Now
-          </button>
+          <button id="releaseResultsBtn" class="btn-primary">Release Now</button>
           <p id="releaseStatus"></p>
         </section>
 
@@ -291,9 +229,7 @@
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody id="resultTableBody">
-                <!-- Filled dynamically -->
-              </tbody>
+              <tbody id="resultTableBody"></tbody>
             </table>
           </div>
         </section>
@@ -317,66 +253,13 @@
                   <th>Exam Type</th>
                 </tr>
               </thead>
-              <tbody>
-                <!-- Populated dynamically -->
-              </tbody>
+              <tbody></tbody>
             </table>
           </div>
 
           <button id="refreshResultsBtn" class="btn-outline">🔄 Refresh</button>
         </section>
       </main>
-    </div>
-    <!-- Class Results Modal -->
-    <div id="classResultsModal" class="modal hidden">
-      <div class="modal-content">
-        <span id="closeModal" class="close">&times;</span>
-        <h3 id="modalTitle">Class Results</h3>
-        <table class="styled-table" id="classResultsTable">
-          <thead>
-            <tr>
-              <th>Subject</th>
-              <th>Teacher</th>
-              <th>Uploaded</th>
-              <th>Pending</th>
-              <th>Average Marks</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
-    <!-- Edit Student Modal -->
-    <div id="editStudentModal" class="modal">
-      <div class="modal-content">
-        <h3>Edit Student</h3>
-        <form id="editStudentForm">
-          <input type="hidden" id="editStudentId" />
-
-          <label>Full Name</label>
-          <input type="text" id="editStudentName" required />
-
-          <label>Grade / Class</label>
-          <input type="text" id="editStudentGrade" required />
-
-          <label>Gender</label>
-          <select id="editStudentGender" required>
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-
-          <label>Date of Birth</label>
-          <input type="date" id="editStudentDob" required />
-
-          <div class="modal-actions">
-            <button type="submit" class="btn-save">Save Changes</button>
-            <button type="button" id="closeEditModal" class="btn-cancel">
-              Cancel
-            </button>
-          </div>
-        </form>
-      </div>
     </div>
 
     <!-- Scripts -->
@@ -385,38 +268,27 @@
     <script src="assets/js/admin.js" defer></script>
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const tabs = document.querySelectorAll(".data-tabs .tab");
-        const panels = document.querySelectorAll(".tab-content");
+      // Sidebar toggle for mobile
+      const toggleBtn = document.getElementById("menuToggleBtn");
+      const sidebar = document.getElementById("sidebar");
+      const content = document.getElementById("content");
 
-        tabs.forEach((tab) => {
-          tab.addEventListener("click", () => {
-            tabs.forEach((t) => t.classList.remove("active"));
-            panels.forEach((p) => p.classList.remove("active"));
+      toggleBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("active");
+        content.classList.toggle("shift");
+      });
 
-            tab.classList.add("active");
-            const targetId = tab.getAttribute("data-target");
-            const targetPanel = document.getElementById(targetId);
-
-            if (targetPanel) {
-              targetPanel.classList.add("active");
-              targetPanel.scrollIntoView({
-                behavior: "smooth",
-                block: "nearest",
-              });
-            }
-          });
-        });
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener("click", (e) => {
+        if (
+          window.innerWidth <= 768 &&
+          !sidebar.contains(e.target) &&
+          !toggleBtn.contains(e.target)
+        ) {
+          sidebar.classList.remove("active");
+          content.classList.remove("shift");
+        }
       });
     </script>
-    <script>
-function toggleMenu() {
-  const sidebar = document.querySelector('.sidebar');
-  const content = document.querySelector('.content');
-  sidebar.classList.toggle('active');
-  content.classList.toggle('shift');
-}
-</script>
-
   </body>
 </html>
