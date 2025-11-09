@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     // === Fetch linked students ===
-    const response = await fetch(`http://127.0.0.1:8000/parents/${parentId}/students`);
+    const response = await fetch(`https://brightpath-2.onrender.com/parents/${parentId}/students`);
     if (!response.ok) throw new Error("Failed to load student data.");
     const result = await response.json();
 
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("studentGrade").textContent = studentData.grade || "—";
 
     // === Fetch performance ===
-    const perfResponse = await fetch(`http://127.0.0.1:8000/students/${studentData.id}/performance`);
+    const perfResponse = await fetch(`https://brightpath-2.onrender.com/students/${studentData.id}/performance`);
     const perfResult = await perfResponse.json();
 
     const performanceBody = document.getElementById("performanceData");
@@ -82,7 +82,7 @@ if (summarizeBtn) {
     resultElem.innerText = "Summarizing... ⏳";
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/summarize", {
+      const res = await fetch("https://brightpath-2.onrender.com/summarize", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
@@ -105,7 +105,7 @@ async function loadAnnouncements() {
   if (!list) return;
 
   try {
-    const res = await fetch("http://127.0.0.1:8000/get-announcements");
+    const res = await fetch("https://brightpath-2.onrender.com/get-announcements");
     const data = await res.json();
 
     list.innerHTML = "";
