@@ -26,7 +26,8 @@ key = os.getenv("SUPABASE_KEY")
 supabase: Client = create_client(url, key)
 
 app = FastAPI(title="BrightPath API", version="1.0")
-client = OpenAI(api_key="OPENAI_API_KEY")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
 # Include router (for future modular routes)
 app.include_router(router)
 
