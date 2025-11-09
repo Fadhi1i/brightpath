@@ -1,12 +1,25 @@
+# Core framework
 fastapi==0.115.2
 uvicorn[standard]==0.30.6
+starlette==0.37.2
+
+# Database + Auth
 supabase==2.5.0
-python-dotenv==1.0.1
-pydantic[email]==2.9.2
 passlib[bcrypt]==1.7.4
 bcrypt==4.2.0
-starlette==0.37.2
-email-validator==2.1.1
+pydantic[email]==2.9.2
+
+# Environment + Utilities
+python-dotenv==1.0.1
 requests==2.31.0
 jinja2==3.1.3
 aiofiles==23.2.1
+itsdangerous==2.1.2     # for token helpers if used later
+python-multipart==0.0.9 # for form/file uploads
+httpx==0.27.0           # required by OpenAI async usage
+
+# OpenAI API
+openai==1.51.0
+
+# Optional (but recommended) for Render stability
+gunicorn==22.0.0        # fallback server for production
