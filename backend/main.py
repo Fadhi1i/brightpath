@@ -35,7 +35,7 @@ app.include_router(router)
 origins = [
     "http://127.0.0.1:5500",
     "http://localhost:5500",
-    "https://brightpath-ixrd.vercel.app",  # 👈 your Vercel frontend
+    "https://brightpath-six.vercel.app/",  # 👈 your Vercel frontend
 ]
 
 app.add_middleware(
