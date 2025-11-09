@@ -17,6 +17,9 @@
   </head>
 
   <body id="top">
+    <!-- ✅ Mobile menu toggle -->
+    <button class="menu-toggle" id="menuToggleBtn">☰</button>
+
     <div class="dashboard">
       <!-- Sidebar -->
       <aside class="sidebar" id="sidebar">
@@ -45,9 +48,8 @@
       </aside>
 
       <!-- Main Content -->
-      <main class="content">
+      <main class="content" id="content">
         <header class="content-header">
-          <span class="menu-toggle" id="menu-toggle">&#9776;</span>
           <h1>Welcome, <span id="teacherName">Teacher</span> 👋</h1>
           <p>Manage your class records and communicate with parents easily.</p>
         </header>
@@ -113,9 +115,7 @@
             ></textarea>
             <button type="submit" class="btn-primary">Post</button>
           </form>
-          <ul id="announcementList">
-            <!-- Populated by JS -->
-          </ul>
+          <ul id="announcementList"></ul>
         </section>
       </main>
     </div>
@@ -124,5 +124,29 @@
     <script src="assets/js/main.js" defer></script>
     <script src="assets/js/dashboard.js" defer></script>
     <script src="assets/js/teacher.js" defer></script>
+
+    <script>
+      // Sidebar toggle for mobile
+      const toggleBtn = document.getElementById("menuToggleBtn");
+      const sidebar = document.getElementById("sidebar");
+      const content = document.getElementById("content");
+
+      toggleBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("active");
+        content.classList.toggle("shift");
+      });
+
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener("click", (e) => {
+        if (
+          window.innerWidth <= 768 &&
+          !sidebar.contains(e.target) &&
+          !toggleBtn.contains(e.target)
+        ) {
+          sidebar.classList.remove("active");
+          content.classList.remove("shift");
+        }
+      });
+    </script>
   </body>
 </html>
