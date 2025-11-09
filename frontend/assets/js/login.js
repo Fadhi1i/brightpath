@@ -36,7 +36,7 @@ if (loginForm) {
       loginButton.disabled = true;
       loginButton.textContent = "Logging in...";
 
-      const response = await fetch("https://brightpath-2.onrender.com/login", {
+      const response = await fetch("https://brightpath-3.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function loadSubjects() {
     if (!subjectsSelect) return;
     try {
-      const res = await fetch("https://brightpath-2.onrender.com/get-subjects");
+      const res = await fetch("https://brightpath-3.onrender.com/get-subjects");
       const data = await res.json();
       if (!data.success) throw new Error("Failed to load subjects");
 
@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
             (o) => o.value
           );
 
-          const res = await fetch("https://brightpath-2.onrender.com/signup-teacher", {
+          const res = await fetch("https://brightpath-3.onrender.com/signup-teacher", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
