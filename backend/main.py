@@ -102,17 +102,17 @@ from passlib.hash import bcrypt
 class LoginRequest(BaseModel):
     email: str
     password: str
-@app.options("/{path:path}")
-async def preflight_handler(path: str):
-    """
-    Handles all OPTIONS requests explicitly for debugging.
-    """
-    from fastapi.responses import JSONResponse
-    response = JSONResponse(content={"message": "Preflight OK"})
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
-    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
-    return response
+# @app.options("/{path:path}")
+# async def preflight_handler(path: str):
+#     """
+#     Handles all OPTIONS requests explicitly for debugging.
+#     """
+#     from fastapi.responses import JSONResponse
+#     response = JSONResponse(content={"message": "Preflight OK"})
+#     response.headers["Access-Control-Allow-Origin"] = "*"
+#     response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
+#     response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+#     return response
 @app.post("/add-announcement")
 async def add_announcement(data: Announcement):
     try:
