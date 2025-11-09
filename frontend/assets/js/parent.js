@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     // === Fetch linked students ===
-    const response = await fetch(`https://brightpath-2.onrender.com/parents/${parentId}/students`);
+    const response = await fetch(`https://brightpath-3.onrender.com/parents/${parentId}/students`);
     if (!response.ok) throw new Error("Failed to load student data.");
     const result = await response.json();
 
@@ -82,7 +82,7 @@ if (summarizeBtn) {
     resultElem.innerText = "Summarizing... ⏳";
 
     try {
-      const res = await fetch("https://brightpath-2.onrender.com/summarize", {
+      const res = await fetch("https://brightpath-3.onrender.com/summarize", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
