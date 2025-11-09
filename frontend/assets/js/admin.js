@@ -2,7 +2,7 @@
    ADMIN DASHBOARD LOGIC - BRIGHTPATH (Final Unified Version)
    =============================== */
 
-const API_URL = "http://127.0.0.1:8000"; // Local FastAPI backend
+const API_URL = "https://brightpath-2.onrender.com/"; // Local FastAPI backend
 
 document.addEventListener("DOMContentLoaded", () => {
   const userRole = localStorage.getItem("userRole");
