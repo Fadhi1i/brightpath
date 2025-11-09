@@ -31,15 +31,17 @@ client = OpenAI(api_key="OPENAI_API_KEY")
 app.include_router(router)
 
 # ✅ CORS middleware — make sure it catches preflight (OPTIONS) requests
+origins = [
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
+    "https://brightpath-ixrd.vercel.app",  # 👈 your Vercel frontend
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://127.0.0.1:5500",
-        "http://localhost:5500",
-        "https://brightpath-ixrd.vercel.app/"
-    ],
-    allow_credentials=False,  # ⚠️ Set to False for now to let '*' work properly
-    allow_methods=["*"],      # Includes OPTIONS, PUT, DELETE, etc.
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
