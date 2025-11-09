@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const phone = document.getElementById("parentPhone").value.trim();
           const admissionNo = document.getElementById("admissionNo").value.trim();
 
-          const res = await fetch("http://127.0.0.1:8000/signup-parent", {
+          const res = await fetch("https://brightpath-3.onrender.com/signup-parent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
