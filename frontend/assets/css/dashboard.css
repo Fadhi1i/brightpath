@@ -98,6 +98,69 @@
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 6px;
 }
+/* ===============================
+   MOBILE RESPONSIVENESS
+   =============================== */
+@media (max-width: 768px) {
+    /* Sidebar slides out of view by default */
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        width: 220px;
+        height: 100vh;
+        box-shadow: var(--shadow-md);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* Sidebar visible when active */
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    /* Show a menu toggle button */
+    .menu-toggle {
+        display: block;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        background: var(--primary-color);
+        color: #fff;
+        font-size: 1.5rem;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 6px;
+        z-index: 1100;
+        box-shadow: var(--shadow-md);
+    }
+
+    /* Content shifts slightly when sidebar opens */
+    .content {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .content.shift {
+        transform: translateX(200px);
+    }
+
+    /* Adjust some text sizes and padding */
+    .sidebar-nav ul li {
+        padding: 0.8rem 1.2rem;
+    }
+
+    .sidebar-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .sidebar-footer a {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+    }
+}
+
+/* Hide menu toggle on desktop */
+.menu-toggle {
+    display: none;
+}
 
 /* ===============================
    MAIN CONTENT
