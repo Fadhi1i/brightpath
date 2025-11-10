@@ -1,17 +1,19 @@
-🧠 BrightPath – AI-Driven School Dashboard
-🌍 Live Deployments
+##🧠 BrightPath – AI-Driven School Dashboard
+##🌍 Live Deployments
 
 Frontend: https://brightpath-six.vercel.app
 
 Backend (API): https://brightpath-3.onrender.com
 
-🎯 Overview
+canvas pitch: https://www.canva.com/design/DAG4Tdod5d8/aUjIXYWnqW95j4SbJgjkKQ/edit?utm_content=DAG4Tdod5d8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+#🎯 Overview
 
 BrightPath is an AI-powered school management system designed to simplify academic data handling for Administrators, Teachers, and Parents through intuitive dashboards, real-time updates, and intelligent insights.
 
 It merges seamless UX with AI assistance — offering text summarization, AI tutoring, and question generation to enhance learning outcomes and administrative efficiency.
 
-👥 Test Accounts
+#👥 Test Accounts
 
 Below are sample credentials for the instructor or testers to explore each user type.
 
@@ -78,29 +80,9 @@ Access teacher comments and announcements
 
 Use AI tools for note summarization, tutoring, and question practice
 
-🧱 Project Structure
-brightpath/
-├── frontend/
-│   ├── assets/
-│   │   ├── css/
-│   │   │   ├── style.css
-│   │   │   └── dashboard.css
-│   │   ├── js/
-│   │   │   ├── main.js
-│   │   │   ├── admin.js
-│   │   │   ├── teacher.js
-│   │   │   └── parent.js
-│   └── pages/
-│       ├── admin.html
-│       ├── teacher.html
-│       └── parent.html
-│
-└── backend/
-    ├── main.py
-    ├── requirements.txt
-    └── routes/
 
-🚀 Deployment Notes
+
+#🚀 Deployment Notes
 🔹 Frontend (Vercel)
 
 
